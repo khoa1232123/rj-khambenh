@@ -62,6 +62,7 @@ const reducer = (state = initialState, { type, payload }) => {
       };
     case bacsiTypes.DELETE_BACSI_SUCCESS:
       return {
+        bacsis: payload,
         isFetching: false,
         error: false,
         message: "DELETE success!",

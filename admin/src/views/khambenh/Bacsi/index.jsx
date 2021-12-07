@@ -12,7 +12,7 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { formatDate } from "src/helpers";
-import { getBacsis } from "src/redux/action-creators";
+import { getBacsis, deleteBacsi } from "src/redux/action-creators";
 import ModalBacsi from "./ModalBacsi";
 // import PostForm from "./PostForm";
 
@@ -31,9 +31,15 @@ const Bacsi = () => {
 
   const handleUpdate = (item) => {
     setOldBacsi(item);
+    setModal(true);
   };
 
-  const handleDelete = (item) => {};
+  const handleDelete = (item) => {
+    if (window.confirm("Are you sure?")) {
+      console.log("abc");
+      dispatch(deleteBacsi(item));
+    }
+  };
 
   const handleClick = () => {
     setModal(true);

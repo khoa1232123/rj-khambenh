@@ -101,8 +101,9 @@ const deleteKhoaStart = () => ({
   type: khoaTypes.DELETE_KHOA_START,
 });
 
-const deleteKhoaSuccess = () => ({
+const deleteKhoaSuccess = (khoas) => ({
   type: khoaTypes.DELETE_KHOA_SUCCESS,
+  payload: khoas,
 });
 
 const deleteKhoaFailure = () => ({
@@ -113,12 +114,13 @@ const deleteKhoa = (khoa) => {
   return async (dispatch, getState) => {
     const {
       option: { configAxios },
+      khoa: { khoas },
     } = getState();
     dispatch(deleteKhoaStart());
     try {
       await axios.delete("/khoa/" + khoa._id, configAxios);
-      console.log("delete success");
-      dispatch(deleteKhoaSuccess());
+      const newkhoas = khoas.filter((item) => item._id !== khoa._id);
+      dispatch(deleteKhoaSuccess(newkhoas));
     } catch (error) {
       console.log("looix");
       dispatch(deleteKhoaFailure());

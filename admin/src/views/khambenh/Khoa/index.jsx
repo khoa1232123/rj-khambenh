@@ -31,7 +31,9 @@ const Khoa = () => {
   };
 
   const handleDelete = (item) => {
-    deleteKhoa();
+    if (window.confirm("Are you sure?")) {
+      dispatch(deleteKhoa(item));
+    }
   };
 
   const handleClick = () => {

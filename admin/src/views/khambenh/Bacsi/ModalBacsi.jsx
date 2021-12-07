@@ -38,7 +38,7 @@ const ModalBacsi = ({ modal, setModal, oldBacsi }) => {
   const [bacsi, setBacsi] = useState({});
 
   const handleChange = (e) => {
-    console.log(e);
+    console.log(bacsi);
     const name = e.target.name;
     const value = e.target.value;
     setBacsi({ ...bacsi, [name]: value });
@@ -131,7 +131,10 @@ const ModalBacsi = ({ modal, setModal, oldBacsi }) => {
                 value={bacsi.gioitinh || ""}
                 onChange={handleChange}
               >
-                {renderGioitinh()}
+                <option value="">--Select Options--</option>
+                <option value="nam">Nam</option>
+                <option value="nu">Nữ</option>
+                <option value="khac">Khác</option>
               </CSelect>
             </CCol>
           </CFormGroup>

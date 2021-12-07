@@ -107,6 +107,7 @@ const reducer = (state = initialState, { type, payload }) => {
       };
     case khoaTypes.DELETE_KHOA_SUCCESS:
       return {
+        khoas: payload,
         isFetching: false,
         error: false,
         message: "DELETE success!",

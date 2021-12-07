@@ -99,8 +99,9 @@ const deleteBacsiStart = () => ({
   type: bacsiTypes.DELETE_BACSI_START,
 });
 
-const deleteBacsiSuccess = () => ({
+const deleteBacsiSuccess = (bacsis) => ({
   type: bacsiTypes.DELETE_BACSI_SUCCESS,
+  payload: bacsis,
 });
 
 const deleteBacsiFailure = () => ({
@@ -109,14 +110,17 @@ const deleteBacsiFailure = () => ({
 
 const deleteBacsi = (bacsi) => {
   return async (dispatch, getState) => {
+    console.log("abc bacsi");
     const {
       option: { configAxios },
+      bacsi: { bacsis },
     } = getState();
     dispatch(deleteBacsiStart());
     try {
       await axios.delete("/bacsi/" + bacsi._id, configAxios);
       console.log("delete success");
-      dispatch(deleteBacsiSuccess());
+      const newBacsis = bacsis.filter((item) => item._id !== bacsi._id);
+      dispatch(deleteBacsiSuccess(newBacsis));
     } catch (error) {
       console.log("looix");
       dispatch(deleteBacsiFailure());
