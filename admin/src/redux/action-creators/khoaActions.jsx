@@ -89,7 +89,7 @@ const createKhoa = (khoa) => {
       const res = await axios.post("/khoa", khoa, configAxios);
       console.log(res);
 
-      dispatch(createKhoaSuccess([...khoas, khoa]));
+      dispatch(createKhoaSuccess([res.data, ...khoas]));
     } catch (error) {
       dispatch(createKhoaFailure());
     }
@@ -147,13 +147,17 @@ const updateKhoa = (khoa) => {
   return async (dispatch, getState) => {
     const {
       option: { configAxios },
+      khoa: { khoas },
     } = getState();
     dispatch(updateKhoaStart());
     try {
       const res = await axios.put("/khoa/" + khoa._id, khoa, configAxios);
       console.log(res);
 
-      dispatch(updateKhoaSuccess(res.data));
+      let index = khoas.findIndex((item) => item._id === khoa._id);
+      khoas[index] = khoa;
+
+      dispatch(updateKhoaSuccess(khoas));
     } catch (error) {
       dispatch(updateKhoaFailure());
     }

@@ -77,7 +77,7 @@ const Bacsi = () => {
                   "actions",
                 ]}
                 striped
-                itemsPerPage={30}
+                itemsPerPage={10}
                 pagination
                 scopedSlots={{
                   "Mã Số": (item) => <td>{item.mso}</td>,

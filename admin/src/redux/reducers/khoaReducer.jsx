@@ -86,7 +86,7 @@ const reducer = (state = initialState, { type, payload }) => {
       };
     case khoaTypes.UPDATE_KHOA_SUCCESS:
       return {
-        khoa: payload,
+        khoas: payload,
         isFetching: false,
         error: false,
         message: "Login thành công!",

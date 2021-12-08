@@ -51,7 +51,6 @@ const ModalKhoa = ({ modal, setModal, oldKhoa }) => {
         dispatch(updateKhoa(khoa));
       }
       setKhoa({});
-      dispatch(getKhoas());
       setModal(false);
     }
   };

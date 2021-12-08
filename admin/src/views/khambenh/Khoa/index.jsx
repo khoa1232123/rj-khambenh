@@ -64,7 +64,7 @@ const Khoa = () => {
                 items={khoas}
                 fields={["_id", "Mã Số", "ten", "actions"]}
                 striped
-                itemsPerPage={30}
+                itemsPerPage={10}
                 pagination
                 scopedSlots={{
                   "Mã Số": (item) => <td>{item.mso}</td>,
