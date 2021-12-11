@@ -8,9 +8,7 @@ const verify = require('../verifyToken');
 router.get('/', async (req, res) => {
   const query = req.query.new;
   try {
-    const records = query
-      ? await Hosobenhnhan.find().sort({ _id: -1 }).limit(5)
-      : await Hosobenhnhan.find();
+    const records = await Hosobenhnhan.find().sort({ createdAt: 'desc' });
     res.status(201).json(records);
   } catch (err) {
     res.status(500).json(err);
@@ -44,7 +42,7 @@ router.post('/', async (req, res) => {
   try {
     const record = await newRecord.save();
     console.log(record);
-    res.status(200).send('Bạn đã tạo hồ sơ mới thành công!!!');
+    res.status(200).json(record);
   } catch (err) {
     res.status(500).json(err);
   }

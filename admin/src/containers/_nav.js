@@ -18,7 +18,13 @@ const _nav = [
   },
   {
     _tag: "CSidebarNavItem",
-    name: "Bac si",
+    name: "Bệnh nhân",
+    to: "/khambenh/benhnhan",
+    icon: "cil-drop",
+  },
+  {
+    _tag: "CSidebarNavItem",
+    name: "Bác sĩ",
     to: "/khambenh/bacsi",
     icon: "cil-drop",
   },

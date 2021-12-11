@@ -5,12 +5,10 @@ import {
   CCardHeader,
   CCol,
   CDataTable,
-  CLink,
   CRow,
 } from "@coreui/react";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 import { getCategories } from "src/redux/action-creators";
 import { deleteCategory } from "src/redux/action-creators/categoryActions";
 import ModalCategory from "./ModalCategory";

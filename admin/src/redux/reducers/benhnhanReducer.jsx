@@ -1,8 +1,8 @@
-import { bacsiTypes } from "../types";
+import { benhnhanTypes } from "../types";
 
 const initialState = {
-  bacsis: [],
-  bacsi: {},
+  benhnhans: [],
+  benhnhan: {},
   isFetching: false,
   error: false,
   message: "",
@@ -10,103 +10,103 @@ const initialState = {
 
 const reducer = (state = initialState, { type, payload }) => {
   switch (type) {
-    case bacsiTypes.GET_BACSIS_START:
+    case benhnhanTypes.GET_BENHNHANS_START:
       return {
-        bacsis: [],
+        benhnhans: [],
         isFetching: true,
         error: false,
         message: "",
       };
-    case bacsiTypes.GET_BACSIS_SUCCESS:
+    case benhnhanTypes.GET_BENHNHANS_SUCCESS:
       return {
-        bacsis: payload,
+        benhnhans: payload,
         isFetching: false,
         error: false,
         message: "Login thành công!",
       };
-    case bacsiTypes.GET_BACSIS_FAILURE:
+    case benhnhanTypes.GET_BENHNHANS_FAILURE:
       return {
-        bacsis: [],
+        benhnhans: [],
         isFetching: false,
         error: true,
         message: "Bạn đã nhập sai email hoặc password!",
       };
 
-    case bacsiTypes.GET_BACSI_START:
+    case benhnhanTypes.GET_BENHNHAN_START:
       return {
-        bacsi: {},
+        benhnhan: {},
         isFetching: true,
         error: false,
         message: "",
       };
-    case bacsiTypes.GET_BACSI_SUCCESS:
+    case benhnhanTypes.GET_BENHNHAN_SUCCESS:
       return {
-        bacsi: payload,
+        benhnhan: payload,
         isFetching: false,
         error: false,
         message: "Login thành công!",
       };
-    case bacsiTypes.GET_BACSI_FAILURE:
+    case benhnhanTypes.GET_BENHNHAN_FAILURE:
       return {
-        bacsi: {},
+        benhnhan: {},
         isFetching: false,
         error: true,
         message: "Bạn đã nhập sai email hoặc password!",
       };
 
-    case bacsiTypes.CREATE_BACSI_START:
+    case benhnhanTypes.CREATE_BENHNHAN_START:
       return {
         isFetching: true,
         error: false,
         message: "",
       };
-    case bacsiTypes.CREATE_BACSI_SUCCESS:
+    case benhnhanTypes.CREATE_BENHNHAN_SUCCESS:
       return {
-        bacsis: payload,
+        benhnhans: payload,
         isFetching: false,
         error: false,
         message: "Login thành công!",
       };
-    case bacsiTypes.CREATE_BACSI_FAILURE:
+    case benhnhanTypes.CREATE_BENHNHAN_FAILURE:
       return {
         isFetching: false,
         error: true,
         message: "Bạn đã nhập sai email hoặc password!",
       };
 
-    case bacsiTypes.UPDATE_BACSI_START:
+    case benhnhanTypes.UPDATE_BENHNHAN_START:
       return {
         isFetching: true,
         error: false,
         message: "",
       };
-    case bacsiTypes.UPDATE_BACSI_SUCCESS:
+    case benhnhanTypes.UPDATE_BENHNHAN_SUCCESS:
       return {
-        bacsis: payload,
+        benhnhans: payload,
         isFetching: false,
         error: false,
         message: "Login thành công!",
       };
-    case bacsiTypes.UPDATE_BACSI_FAILURE:
+    case benhnhanTypes.UPDATE_BENHNHAN_FAILURE:
       return {
         isFetching: false,
         error: true,
         message: "Bạn đã nhập sai email hoặc password!",
       };
-    case bacsiTypes.DELETE_BACSI_START:
+    case benhnhanTypes.DELETE_BENHNHAN_START:
       return {
         isFetching: true,
         error: false,
         message: "",
       };
-    case bacsiTypes.DELETE_BACSI_SUCCESS:
+    case benhnhanTypes.DELETE_BENHNHAN_SUCCESS:
       return {
-        bacsis: payload,
+        benhnhans: payload,
         isFetching: false,
         error: false,
         message: "DELETE success!",
       };
-    case bacsiTypes.DELETE_BACSI_FAILURE:
+    case benhnhanTypes.DELETE_BENHNHAN_FAILURE:
       return {
         isFetching: false,
         error: true,

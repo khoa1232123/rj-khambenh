@@ -14,7 +14,6 @@ import { useEffect, useState } from "react";
 import { Editor } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation } from "react-router";
 import { getPost } from "src/redux/action-creators";
 
 const PostDetail = (props) => {

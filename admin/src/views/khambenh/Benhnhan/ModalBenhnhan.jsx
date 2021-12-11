@@ -17,75 +17,74 @@ import { useDispatch, useSelector } from "react-redux";
 import { randomMaso } from "src/helpers";
 import { renderKhoa } from "src/helpers/renderKhoa";
 import {
-  createBacsi,
-  getBacsis,
+  createBenhnhan,
+  getBenhnhans,
   getKhoas,
-  updateBacsi,
+  updateBenhnhan,
 } from "src/redux/action-creators";
 
-const ModalBacsi = ({ modal, setModal, oldBacsi }) => {
+const ModalBenhnhan = ({ modal, setModal, oldBenhnhan }) => {
   const dispatch = useDispatch();
 
   const { khoas } = useSelector((state) => state.khoa);
 
   useEffect(() => {
-    dispatch(getBacsis());
+    dispatch(getBenhnhans());
     dispatch(getKhoas());
   }, [dispatch]);
 
-  const [bacsi, setBacsi] = useState({});
+  const [benhnhan, setBenhnhan] = useState({});
 
   const handleChange = (e) => {
-    console.log(bacsi);
+    console.log(benhnhan);
     const name = e.target.name;
     const value = e.target.value;
-    setBacsi({ ...bacsi, [name]: value });
+    setBenhnhan({ ...benhnhan, [name]: value });
   };
 
   useEffect(() => {
-    if (oldBacsi) {
-      setBacsi(oldBacsi);
+    if (oldBenhnhan) {
+      setBenhnhan(oldBenhnhan);
     }
-  }, [oldBacsi]);
+  }, [oldBenhnhan]);
 
   const handleClick = () => {
-    console.log({ bacsi, oldBacsi });
-    if (bacsi.ten !== "") {
-      if (Object.keys(oldBacsi).length === 0) {
-        bacsi["mso"] = randomMaso("bs");
+    console.log({ benhnhan, oldBenhnhan });
+    if (benhnhan.ten !== "") {
+      if (Object.keys(oldBenhnhan).length === 0) {
+        benhnhan["mso"] = randomMaso("bn");
 
-        dispatch(createBacsi(bacsi));
+        dispatch(createBenhnhan(benhnhan));
       } else {
-        dispatch(updateBacsi(bacsi));
+        dispatch(updateBenhnhan(benhnhan));
       }
-      setBacsi({});
+      setBenhnhan({});
       setModal(false);
     }
   };
 
   const closeModal = () => {
-    setBacsi({});
+    setBenhnhan({});
     setModal(false);
   };
-
   return (
     <CModal show={modal} onClose={closeModal}>
       <CModalHeader closeButton>
-        <CModalTitle>Update Bacsi</CModalTitle>
+        <CModalTitle>Update Benhnhan</CModalTitle>
       </CModalHeader>
       <CModalBody>
         <CForm action="" method="post" className="form-horizontal">
           <CFormGroup row>
             <CCol md="3">
-              <CLabel htmlFor="text-input">Tên</CLabel>
+              <CLabel htmlFor="text-input">Họ tên</CLabel>
             </CCol>
             <CCol xs="12" md="9">
               <CInput
                 id="ten"
                 name="ten"
                 required
-                placeholder="Tên Bacsi"
-                value={bacsi.ten || ""}
+                placeholder="Tên Benhnhan"
+                value={benhnhan.ten || ""}
                 onChange={handleChange}
               />
             </CCol>
@@ -100,7 +99,7 @@ const ModalBacsi = ({ modal, setModal, oldBacsi }) => {
                 name="email"
                 required
                 placeholder="Email"
-                value={bacsi.email || ""}
+                value={benhnhan.email || ""}
                 onChange={handleChange}
               />
             </CCol>
@@ -115,7 +114,7 @@ const ModalBacsi = ({ modal, setModal, oldBacsi }) => {
                 name="sodienthoai"
                 required
                 placeholder="Số Điện Thoại"
-                value={bacsi.sodienthoai || ""}
+                value={benhnhan.sodienthoai || ""}
                 onChange={handleChange}
               />
             </CCol>
@@ -128,7 +127,7 @@ const ModalBacsi = ({ modal, setModal, oldBacsi }) => {
               <CSelect
                 id="gioitinh"
                 name="gioitinh"
-                value={bacsi.gioitinh || ""}
+                value={benhnhan.gioitinh || ""}
                 onChange={handleChange}
               >
                 <option value="">--Select Options--</option>
@@ -148,38 +147,39 @@ const ModalBacsi = ({ modal, setModal, oldBacsi }) => {
                 type="date"
                 name="ngaysinh"
                 placeholder="Ngày sinh"
-                value={bacsi.ngaysinh || ""}
+                value={benhnhan.ngaysinh || ""}
                 onChange={handleChange}
               />
             </CCol>
           </CFormGroup>
           <CFormGroup row>
             <CCol md="3">
-              <CLabel htmlFor="text-input">Địa chỉ</CLabel>
+              <CLabel htmlFor="text-input">Ngày tạo hồ sơ</CLabel>
             </CCol>
             <CCol xs="12" md="9">
               <CInput
-                id="diachi"
-                name="diachi"
-                placeholder="Địa chỉ"
-                value={bacsi.diachi || ""}
+                id="ngaylap"
+                type="date"
+                name="ngaylap"
+                placeholder="Ngày tạo hồ sơ"
+                value={benhnhan.ngaylap || ""}
                 onChange={handleChange}
               />
             </CCol>
           </CFormGroup>
           <CFormGroup row>
             <CCol md="3">
-              <CLabel htmlFor="text-input">Khoa</CLabel>
+              <CLabel htmlFor="text-input">Ngày hết hạn</CLabel>
             </CCol>
             <CCol xs="12" md="9">
-              <CSelect
-                id="khoa"
-                name="khoa"
-                value={bacsi.khoa || ""}
+              <CInput
+                id="hethan"
+                type="date"
+                name="hethan"
+                placeholder="Ngày hết hạn"
+                value={benhnhan.hethan || ""}
                 onChange={handleChange}
-              >
-                {renderKhoa(khoas)}
-              </CSelect>
+              />
             </CCol>
           </CFormGroup>
         </CForm>
@@ -196,4 +196,4 @@ const ModalBacsi = ({ modal, setModal, oldBacsi }) => {
   );
 };
 
-export default ModalBacsi;
+export default ModalBenhnhan;

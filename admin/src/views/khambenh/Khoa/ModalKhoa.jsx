@@ -10,11 +10,9 @@ import {
   CModalFooter,
   CModalHeader,
   CModalTitle,
-  CSelect,
-  CTextarea,
 } from "@coreui/react";
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { randomMaso } from "src/helpers";
 import { getKhoas, createKhoa, updateKhoa } from "src/redux/action-creators";
 

@@ -7,10 +7,12 @@ const verify = require('../verifyToken');
 // Get all
 router.get('/', async (req, res) => {
   try {
-    const records = await Vienphi.find().populate({
-      path: 'hosobenhnhan',
-      select: ['ten', 'gioitinh', 'email', 'sodienthoai'],
-    });
+    const records = await Vienphi.find()
+      .populate({
+        path: 'hosobenhnhan',
+        select: ['ten', 'gioitinh', 'email', 'sodienthoai'],
+      })
+      .sort({ createdAt: 'desc' });
     res.status(201).json(records);
   } catch (err) {
     res.status(500).json(err);
@@ -40,7 +42,7 @@ router.post('/', async (req, res) => {
   try {
     const record = await newRecord.save();
     console.log(record);
-    res.status(200).send('Bạn đã tạo vien phi thành công!!!');
+    res.status(200).json(record);
   } catch (err) {
     res.status(500).json(err);
   }

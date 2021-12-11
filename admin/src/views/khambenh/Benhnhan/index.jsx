@@ -8,40 +8,39 @@ import {
   CRow,
 } from "@coreui/react";
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { formatDate } from "src/helpers";
-import { deleteBacsi, getBacsis } from "src/redux/action-creators";
-import ModalBacsi from "./ModalBacsi";
-// import PostForm from "./PostForm";
+import { getBenhnhans, deleteBenhnhan } from "src/redux/action-creators";
+import ModalBenhnhan from "./ModalBenhnhan";
 
-const Bacsi = () => {
+const Benhnhan = () => {
   const dispatch = useDispatch();
+  const [oldBenhnhan, setOldBenhnhan] = useState({});
   const [modal, setModal] = useState(false);
-  const [oldBacsi, setOldBacsi] = useState({});
 
-  const { bacsis } = useSelector((state) => state.bacsi);
+  const { benhnhans } = useSelector((state) => state.benhnhan);
 
   useEffect(() => {
-    dispatch(getBacsis());
+    dispatch(getBenhnhans());
   }, [dispatch]);
 
-  console.log(bacsis);
-
   const handleUpdate = (item) => {
-    setOldBacsi(item);
+    setOldBenhnhan(item);
     setModal(true);
   };
 
   const handleDelete = (item) => {
     if (window.confirm("Are you sure?")) {
-      console.log("abc");
-      dispatch(deleteBacsi(item));
+      dispatch(deleteBenhnhan(item));
     }
   };
 
   const handleClick = () => {
     setModal(true);
   };
+
+  console.log(benhnhans);
 
   return (
     <>
@@ -62,16 +61,16 @@ const Bacsi = () => {
             </CCardHeader>
             <CCardBody>
               <CDataTable
-                items={bacsis}
+                items={benhnhans}
                 fields={[
                   "Mã Số",
-                  "Tên bác sĩ",
-                  "Số Điện Thoại",
+                  "Họ Tên",
                   "email",
-                  "Địa Chỉ",
+                  "Số điện thoại",
                   "Giới tính",
-                  "Ngày Sinh",
-                  "Khoa",
+                  "Ngày sinh",
+                  "Ngày tạo hồ sơ",
+                  "Ngày hết hạn",
                   "actions",
                 ]}
                 striped
@@ -79,12 +78,14 @@ const Bacsi = () => {
                 pagination
                 scopedSlots={{
                   "Mã Số": (item) => <td>{item.mso}</td>,
-                  "Tên bác sĩ": (item) => <td>{item.ten}</td>,
-                  "Số Điện Thoại": (item) => <td>{item.sodienthoai}</td>,
-                  "Địa Chỉ": (item) => <td>{item.diachi}</td>,
+                  "Họ Tên": (item) => <td>{item.ten}</td>,
+                  "Số điện thoại": (item) => <td>{item.sodienthoai}</td>,
                   "Giới tính": (item) => <td>{item.gioitinh}</td>,
-                  "Ngày Sinh": (item) => <td>{formatDate(item.ngaysinh)}</td>,
-                  Khoa: (item) => <td>{item.khoa ? item.khoa.ten : ""}</td>,
+                  "Ngày sinh": (item) => <td>{formatDate(item.ngaysinh)}</td>,
+                  "Ngày tạo hồ sơ": (item) => (
+                    <td>{formatDate(item.ngaylap)}</td>
+                  ),
+                  "Ngày hết hạn": (item) => <td>{formatDate(item.hethan)}</td>,
                   actions: (item) => (
                     <td>
                       <CButton
@@ -107,9 +108,13 @@ const Bacsi = () => {
           </CCard>
         </CCol>
       </CRow>
-      <ModalBacsi modal={modal} setModal={setModal} oldBacsi={oldBacsi} />
+      <ModalBenhnhan
+        modal={modal}
+        setModal={setModal}
+        oldBenhnhan={oldBenhnhan}
+      />
     </>
   );
 };
 
-export default Bacsi;
+export default Benhnhan;

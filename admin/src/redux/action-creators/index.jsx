@@ -5,3 +5,4 @@ export * from "./categoryActions";
 export * from "./postActions";
 export * from "./bacsiActions";
 export * from "./khoaActions";
+export * from "./benhnhanActions";

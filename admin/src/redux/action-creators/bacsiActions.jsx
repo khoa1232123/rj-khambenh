@@ -68,9 +68,9 @@ const createBacsiStart = () => ({
   type: bacsiTypes.CREATE_BACSI_START,
 });
 
-const createBacsiSuccess = (cat) => ({
+const createBacsiSuccess = (bacsis) => ({
   type: bacsiTypes.CREATE_BACSI_SUCCESS,
-  payload: cat,
+  payload: bacsis,
 });
 
 const createBacsiFailure = () => ({
@@ -81,13 +81,14 @@ const createBacsi = (bacsi) => {
   return async (dispatch, getState) => {
     const {
       option: { configAxios },
+      bacsi: { bacsis },
     } = getState();
     dispatch(createBacsiStart());
     try {
       const res = await axios.post("/bacsi", bacsi, configAxios);
       console.log(res);
 
-      dispatch(createBacsiSuccess(res.data));
+      dispatch(createBacsiSuccess([res.data, ...bacsis]));
     } catch (error) {
       dispatch(createBacsiFailure());
     }
@@ -133,9 +134,9 @@ const updateBacsiStart = () => ({
   type: bacsiTypes.UPDATE_BACSI_START,
 });
 
-const updateBacsiSuccess = (cat) => ({
+const updateBacsiSuccess = (bacsis) => ({
   type: bacsiTypes.UPDATE_BACSI_SUCCESS,
-  payload: cat,
+  payload: bacsis,
 });
 
 const updateBacsiFailure = () => ({
@@ -146,13 +147,17 @@ const updateBacsi = (bacsi) => {
   return async (dispatch, getState) => {
     const {
       option: { configAxios },
+      bacsi: { bacsis },
     } = getState();
     dispatch(updateBacsiStart());
     try {
       const res = await axios.put("/bacsi/" + bacsi._id, bacsi, configAxios);
       console.log(res);
 
-      dispatch(updateBacsiSuccess(res.data));
+      let index = bacsis.findIndex((item) => item._id === bacsi._id);
+      bacsis[index] = bacsi;
+
+      dispatch(updateBacsiSuccess(bacsis));
     } catch (error) {
       dispatch(updateBacsiFailure());
     }

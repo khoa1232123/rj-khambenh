@@ -67,6 +67,7 @@ const CreateUser = React.lazy(() => import("./views/users/CreateUser"));
 
 const Bacsi = React.lazy(() => import("./views/khambenh/Bacsi"));
 const Khoa = React.lazy(() => import("./views/khambenh/Khoa"));
+const Benhnhan = React.lazy(() => import("./views/khambenh/Benhnhan"));
 
 const routes = [
   { path: "/", exact: true, name: "Home" },
@@ -179,6 +180,12 @@ const routes = [
     exact: true,
     name: "Post Create",
     component: Khoa,
+  },
+  {
+    path: "/khambenh/benhnhan",
+    exact: true,
+    name: "Post Create",
+    component: Benhnhan,
   },
 ];
 

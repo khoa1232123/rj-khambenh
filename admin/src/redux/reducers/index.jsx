@@ -6,6 +6,7 @@ import category from "./categoryReducer";
 import post from "./postReducer";
 import bacsi from "./bacsiReducer";
 import khoa from "./khoaReducer";
+import benhnhan from "./benhnhanReducer";
 
 const rootReducer = combineReducers({
   auth,
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
   post,
   bacsi,
   khoa,
+  benhnhan,
 });
 
 export default rootReducer;

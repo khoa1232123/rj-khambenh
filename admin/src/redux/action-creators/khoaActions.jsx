@@ -68,9 +68,9 @@ const createKhoaStart = () => ({
   type: khoaTypes.CREATE_KHOA_START,
 });
 
-const createKhoaSuccess = (cat) => ({
+const createKhoaSuccess = (khoas) => ({
   type: khoaTypes.CREATE_KHOA_SUCCESS,
-  payload: cat,
+  payload: khoas,
 });
 
 const createKhoaFailure = () => ({
@@ -133,9 +133,9 @@ const updateKhoaStart = () => ({
   type: khoaTypes.UPDATE_KHOA_START,
 });
 
-const updateKhoaSuccess = (cat) => ({
+const updateKhoaSuccess = (khoas) => ({
   type: khoaTypes.UPDATE_KHOA_SUCCESS,
-  payload: cat,
+  payload: khoas,
 });
 
 const updateKhoaFailure = () => ({
